@@ -1,0 +1,16 @@
+etusivu
+- kirjaudu sisään
+- rekisteröidy
+
+opiskelija
+- lista viimeisimmistä tapahtumista
+- luo uusi tapahtuma (pvm, maara, kuvaus(ei pakollinen))
++ paivittainen/kuukausittainen/vuosittainen?
+
+admin
+- lista opiskelijoista
+- poista opiskelija
+
+tilinakyma
+- kaikki kulut ja menot (kenties graafina)
+- ennakoidut kustannukset??

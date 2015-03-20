@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<p>graafinen kuvaaja kenties tulosta ja menoista</p>
+
+<button class="btn btn-primary">Valitse aikajakso</button>
+
+<table class="table table-bordered table-striped">
+    <tbody>
+      <tr>
+        <td>Pvm</td>
+        <td>Määrä</td>
+	<td>Kuvaus</td>
+	<td>Automaatinen?</td>
+      </tr>
+      <tr>
+        <td>Tekstiä</td>
+        <td>Tekstiä</td>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}

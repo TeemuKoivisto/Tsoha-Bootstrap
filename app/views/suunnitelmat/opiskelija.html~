@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Viimeisimmät tapahtumat</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Tekstiä</td>
+        <td>Tekstiä</td>
+      </tr>
+      <tr>
+        <td>Tekstiä</td>
+        <td>Tekstiä</td>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}
