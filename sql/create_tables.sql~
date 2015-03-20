@@ -10,6 +10,6 @@ CREATE TABLE Tilitapahtuma(
   id SERIAL PRIMARY KEY,
   opiskelija_id INTEGER REFERENCES Opiskelija(id),
   pvm DATE,
-  maara INTEGER,
+  maara DECIMAL,
   kuvaus VARCHAR(200)
 );

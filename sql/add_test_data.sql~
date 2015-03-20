@@ -1,8 +1,10 @@
 -- Lisää INSERT INTO lauseet tähän tiedostoon
 
-INSERT INTO Opiskelija(nimi, salasana) VALUES ('Pena', 'qwerty');
+INSERT INTO Opiskelija(nimi, password) VALUES ('Pena', 'qwerty');
 
-INSERT INTO Opiskelija(nimi, salasana) VALUES ('Repe', '123');
+INSERT INTO Opiskelija(nimi, password) VALUES ('Repe', '123');
+
+INSERT INTO Admin(opiskelija_id) VALUES (1);
 
 INSERT INTO Tilitapahtuma(pvm, maara, kuvaus) VALUES ('2015-1-03', 6, 'bisse');
 

@@ -6,6 +6,11 @@ CREATE TABLE Opiskelija(
   password varchar(50) NOT NULL
 );
 
+CREATE TABLE Admin(
+  id SERIAL PRIMARY KEY,
+  opiskelija_id INTEGER REFERENCES Opiskelija(id)
+);
+
 CREATE TABLE Tilitapahtuma(
   id SERIAL PRIMARY KEY,
   opiskelija_id INTEGER REFERENCES Opiskelija(id),
