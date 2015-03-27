@@ -3,7 +3,7 @@
 Yleisiä linkkejä:
 
 * [Linkki sovellukseeni](https://teekoivi.users.cs.helsinki.fi/tsoha/)
-* [Linkki dokumentaatiooni](https://github.comTsoha-Bootstrap/tree/master/doc/dokumentaatio.pdf)
+* [Linkki dokumentaatiooni](https://github.com/Tsoha-Bootstrap/tree/master/doc/dokumentaatio.pdf)
 * [Linkki loginiin](https://teekoivi.users.cs.helsinki.fi/tsoha/login)
 * [Linkki opiskelijaan](https://teekoivi.users.cs.helsinki.fi/tsoha/opiskelija)
 * [Linkki adminiin](https://teekoivi.users.cs.helsinki.fi/tsoha/admin)
