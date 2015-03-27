@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Lisää uusi tapahtuma</h1>
+
+<form method="post" action="{{base_path}}/tapahtumat">
+    <div class="form-group">
+        <label>Opiskelija id</label>
+        <input type="text" name="opiskelija_id" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>Päivämäärä</label>
+        <input type="text" name="pvm" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>Määrä</label>
+        <input type="text" name="maara" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>Kuvaus</label>
+        <textarea name="kuvaus" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Lisää</button>
+    </div>
+</form>
+{% endblock %}

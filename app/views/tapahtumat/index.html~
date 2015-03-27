@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<p>Kaikki tilitapahtumat. Tarkoitettu Adminille.</p>
+
+<button class="btn btn-primary">Valitse aikajakso</button>
+
+<table class="table table-bordered table-striped">
+    <tbody>
+      {% for tapahtuma in tilitapahtumat %}
+      <tr>
+	<td><a href="{{base_path}}/tapahtumat/{{tapahtuma.id}}">{{tapahtuma.opiskelija_id}}</td>
+        <td>{{tapahtuma.pvm}}</td>
+        <td>{{tapahtuma.maara}}</td>
+	<td>{{tapahtuma.kuvaus}}</td>
+	<td><a class="btn btn-default btn-sm" href="{{base_path}}/tapahtumat/{{tapahtuma.id}}/edit">Muokkaa?</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
