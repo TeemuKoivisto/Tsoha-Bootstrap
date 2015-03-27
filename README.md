@@ -3,12 +3,11 @@
 Yleisiä linkkejä:
 
 * [Linkki sovellukseeni](https://teekoivi.users.cs.helsinki.fi/tsoha/)
-* [Linkki dokumentaatiooni](https://github.com/TeemuKoivisto/opiskelijanTilinpito/blob/master/doc/dokumentaatio.pdf
+* [Linkki dokumentaatiooni](https://github.comTsoha-Bootstrap/tree/master/doc/dokumentaatio.pdf)
 * [Linkki loginiin](https://teekoivi.users.cs.helsinki.fi/tsoha/login)
 * [Linkki opiskelijaan](https://teekoivi.users.cs.helsinki.fi/tsoha/opiskelija)
 * [Linkki adminiin](https://teekoivi.users.cs.helsinki.fi/tsoha/admin)
 * [Linkki tilinäkymään](https://teekoivi.users.cs.helsinki.fi/tsoha/tilinakyma)
-* )
 
 ## Aihekuvaus
 
