@@ -9,6 +9,12 @@ Yleisiä linkkejä:
 * [Linkki adminiin](https://teekoivi.users.cs.helsinki.fi/tsoha/admin)
 * [Linkki tilinäkymään](https://teekoivi.users.cs.helsinki.fi/tsoha/tilinakyma)
 
+Kolmannen viikon esimerkit:
+
+* [Listaus](https://teekoivi.users.cs.helsinki.fi/tsoha/tapahtumat)
+* [Esittely](https://teekoivi.users.cs.helsinki.fi/tsoha/opiskelijat/1)
+* [Lisäys](https://teekoivi.users.cs.helsinki.fi/tsoha/tapahtumat/new)
+
 ## Aihekuvaus
 
 Aina välillä saattaa opiskelija huomata, että tili ammottaa tyhjyyttään eikä kukkarossakaan ole
