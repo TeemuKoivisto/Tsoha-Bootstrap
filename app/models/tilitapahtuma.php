@@ -56,21 +56,13 @@ class Tilitapahtuma extends BaseModel {
         return null;
     }
 
-    public static function save() {
+    public function save() {
 
         $query = DB::connection()->prepare('INSERT INTO Tilitapahtuma'
                 . '(opiskelija_id, pvm, maara, kuvaus)'
                 . 'VALUES (:opiskelija_id, :pvm, :maara, :kuvaus)'
                 . 'RETURNING id');
-//        Kint::trace();
-//        Kint::dump($query);
-//        $this->kuvaus
-//        $query->execute(array('opiskelija_id' => $this->opiskelija_id, 'pvm' => $this->pvm,
-//            'maara' => $this->maara, 'kuvaus' => $this->kuvaus));
-
-//        $query->execute(array('opiskelija_id' => $opiskelija_id, 'pvm' => $pvm,
-//            'maara' => $maara, 'kuvaus' => $kuvaus));
-
+        
         $query->execute(array('opiskelija_id' => $this->opiskelija_id, 
             'pvm' => $this->pvm, 'maara' => $this->maara,
             'kuvaus' => $this->kuvaus));
@@ -78,5 +70,4 @@ class Tilitapahtuma extends BaseModel {
         $row = $query->fetch();
         $this->id = $row['id'];
     }
-
 }

@@ -39,8 +39,8 @@ class Opiskelija extends BaseModel {
         $query->execute(array('id' => $id));
         $row = $query->fetch();
         
-        foreach($rows as $row) {
-            $opiskelija[] = new Opiskelija(array(
+        if($row) {
+            $opiskelija = new Opiskelija(array(
                 'id' => $row['id'],
                 'nimi' => $row['nimi']
             ));
@@ -48,5 +48,25 @@ class Opiskelija extends BaseModel {
         }
         
         return null;
+    }
+    
+    public static function findEventsById($id) {
+        $query = DB::connection()->prepare('SELECT * FROM Tilitapahtuma WHERE opiskelija_id = ' .$id);
+        $query->execute();
+        $rows = $query->fetchAll();
+        Kint::dump($query);
+        Kint::dump($rows);
+        $tapahtumat = array();
+        
+        foreach ($rows as $row) {
+            $tapahtumat[] = new Tilitapahtuma(array(
+                'id' => $row['id'],
+                'opiskelija_id' => $row['opiskelija_id'],
+                'pvm' => $row['pvm'],
+                'maara' => $row['maara'],
+                'kuvaus' => $row['kuvaus']
+            ));
+        }
+        return $tapahtumat;
     }
 }

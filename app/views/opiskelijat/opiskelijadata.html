@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<button class="btn btn-success">Lisää tapahtuma(broken)</button>
+
+<table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>{{opiskelija.nimi}}</th>
+      </tr>
+    </thead>
+    <tbody>
+	{% for tapahtuma in tapahtumat %}
+      <tr>
+        <td>{{tapahtuma.pvm}}</td>
+        <td>{{tapahtuma.maara}}</td>
+	<td>{{tapahtuma.kuvaus}}</td>
+      </tr>
+       {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

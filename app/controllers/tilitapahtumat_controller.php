@@ -29,7 +29,8 @@ class TapahtumaController extends BaseController {
         Kint::dump($tapahtuma);
         $tapahtuma->save();
         
-        Redirect::to('/tapahtumat' . $tapahtuma->id, array('message' => 'Tapahtuma lisätty'));
+        Redirect::to('/tapahtumat', array('message' => 'Tapahtuma lisätty'));
+//        Redirect::to('/tapahtumat' . $tapahtuma->id, array('message' => 'Tapahtuma lisätty'));
     }
     
     public static function create() {

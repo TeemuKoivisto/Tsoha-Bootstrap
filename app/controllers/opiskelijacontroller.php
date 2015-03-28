@@ -16,6 +16,12 @@ class OpiskelijaController extends BaseController {
     
     public static function show($id) {
         $opiskelija = Opiskelija::find($id);
-        View::make('opiskelijat/:id', array('tapahtumat' => $opiskelija));
+        $tapahtumat = Opiskelija::findEventsById($id);
+        
+        Kint::dump($opiskelija);
+        Kint::dump($tapahtumat);
+        
+        
+        View::make('opiskelijat/opiskelijadata.html', array('tapahtumat' => $tapahtumat),  array('opiskelija' => $opiskelija));
     }
 }
