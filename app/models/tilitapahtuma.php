@@ -12,6 +12,7 @@ class Tilitapahtuma extends BaseModel {
 
     public function __construct($attributes = null) {
         parent::__construct($attributes);
+        $this->validators = array('validate_opiskelija_id', 'validate_pvm', 'validate_maara', 'validate_kuvaus');
     }
 
     public static function all() {
@@ -62,12 +63,31 @@ class Tilitapahtuma extends BaseModel {
                 . '(opiskelija_id, pvm, maara, kuvaus)'
                 . 'VALUES (:opiskelija_id, :pvm, :maara, :kuvaus)'
                 . 'RETURNING id');
-        
-        $query->execute(array('opiskelija_id' => $this->opiskelija_id, 
+
+        $query->execute(array('opiskelija_id' => $this->opiskelija_id,
             'pvm' => $this->pvm, 'maara' => $this->maara,
             'kuvaus' => $this->kuvaus));
 //        
         $row = $query->fetch();
         $this->id = $row['id'];
     }
+
+    public function update() {
+//        $query = DB::connection()->prepare('UPDATE Tilitapahtuma SET pvm = ' . $this->pvm 
+//                . ', maara = ' . $this->maara 
+//                . ', kuvaus = ' . $this->kuvaus
+//                . ' WHERE ID = ' . $this->id);
+        $query = DB::connection()->prepare('UPDATE Tilitapahtuma SET pvm = :pvm,'
+                . ' maara = :maara, kuvaus = :kuvaus WHERE ID = :id');
+
+        $query->execute(array('id' => $this->id, 'pvm' => $this->pvm,
+            'maara' => $this->maara, 'kuvaus' => $this->kuvaus));
+    }
+
+    public function destroy() {
+        $query = DB::connection()->prepare('DELETE FROM Tilitapahtuma WHERE id = :id');
+
+        $query->execute(array('id' => $this->id));
+    }
+
 }

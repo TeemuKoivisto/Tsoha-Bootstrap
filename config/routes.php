@@ -24,7 +24,7 @@ $routes->get('/tilinakyma', function() {
     HelloWorldController::tilinakyma();
 });
 
-/// uuddet >>>
+/// kolmas viik>>
 
 $routes->get('/tapahtumat', function() {
     TapahtumaController::index();
@@ -44,6 +44,20 @@ $routes->get('/opiskelijat', function() {
 
 $routes->get('/opiskelijat/:id', function($id) {
     OpiskelijaController::show($id);
+});
+
+// neljäs viik>>
+
+$routes->get('/tapahtumat/:id/edit', function($id) {
+    TapahtumaController::edit($id);
+});
+
+$routes->post('/tapahtumat/:id/edit', function($id) {
+    TapahtumaController::update($id);
+});
+
+$routes->post('/tapahtumat/:id/destroy', function($id) {
+    TapahtumaController::destroy($id);
 });
 
 /*

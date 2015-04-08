@@ -21,7 +21,6 @@ class OpiskelijaController extends BaseController {
         Kint::dump($opiskelija);
         Kint::dump($tapahtumat);
         
-        
-        View::make('opiskelijat/opiskelijadata.html', array('tapahtumat' => $tapahtumat),  array('opiskelija' => $opiskelija));
+        View::make('opiskelijat/opiskelijadata.html', array('tapahtumat' => $tapahtumat, 'opiskelija' => $opiskelija));
     }
 }

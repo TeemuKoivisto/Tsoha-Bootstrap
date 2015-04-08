@@ -8,11 +8,25 @@ class HelloWorldController extends BaseController {
     }
 
     public static function sandbox() {
-        $tapahtuma1 = Tilitapahtuma::find(1);
-        $tapahtumat = Tilitapahtuma::all();
+//        $tapahtuma1 = Tilitapahtuma::find(1);
+//        $tapahtumat = Tilitapahtuma::all();
+//        
+//        Kint::dump($tapahtuma1);
+//        Kint::dump($tapahtumat);
         
-        Kint::dump($tapahtuma1);
-        Kint::dump($tapahtumat);
+        $opiskelij = new Opiskelija(array(
+            'nimi' => 'asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf'
+        ));
+        $errors = $opiskelij->errors();
+        Kint::dump($errors);
+        
+        $tapahtum = new Tilitapahtuma(array(
+            'pvm' => '9999-99-9',
+            'kuvaus' => 'asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf'
+        ));
+        $terrors = $tapahtum->errors();
+        Kint::dump($terrors);
+        
         
         // Testaa koodiasi täällä
         View::make('helloworld.html');
