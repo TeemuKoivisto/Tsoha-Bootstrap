@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if message %}
+<div class="alert alert-success">
+    {{message}}
+</div>
+{% endif %}
+
+
+<a class="btn btn-primary" href="{{base_path}}/login">Kirjaudu</a>
+
+<a class="btn btn-primary" href="{{base_path}}/opiskelija/new">Rekisteröidy</a>
+
+{% endblock %}

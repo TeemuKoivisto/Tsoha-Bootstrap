@@ -9,12 +9,18 @@
 class TapahtumaController extends BaseController {
 
     public static function index() {
+        $opiskelija = self::get_user_logged_in();
+        if ($opiskelija) {
+            $tapahtumat = Tilitapahtuma::findEventsById($opiskelija->id);
+            View::make('tapahtumat/index.html', array('tapahtumat' => $tapahtumat));
+        } else {
+            Redirect::to('/', array('message' => 'Kirjaudu sisään tai rekisteröidy.'));
+        }
+    }
+
+    public static function show_all() {
         $tapahtumat = Tilitapahtuma::all();
-
-        Kint::dump($tapahtumat);
-
-//        $tapahtumat = Tilitapahtuma::all();
-        View::make('tapahtumat/index.html', array('tapahtumat' => $tapahtumat));
+        View::make('tapahtumat/all.html', array('tapahtumat' => $tapahtumat));
     }
 
     public static function store() {
@@ -66,7 +72,7 @@ class TapahtumaController extends BaseController {
             View::make('/tapahtumat/edit.html', array('errors' => $errors, 'attributes' => $attributes));
         } else {
             $tapahtuma->update();
-            Redirect::to('/tapahtumat', array('message' => 'Successful edit dawg.'));
+            Redirect::to('/tapahtumat', array('message' => 'Tapahtumaa muokattu onnistuneesti.'));
         }
     }
 

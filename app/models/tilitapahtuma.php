@@ -16,9 +16,7 @@ class Tilitapahtuma extends BaseModel {
     }
 
     public static function all() {
-
         $query = DB::connection()->prepare('SELECT * FROM Tilitapahtuma');
-
         $query->execute();
 
         $rows = $query->fetchAll();
@@ -38,7 +36,6 @@ class Tilitapahtuma extends BaseModel {
     }
 
     public static function find($id) {
-
         $query = DB::connection()->prepare('SELECT * FROM Tilitapahtuma WHERE id = :id LIMIT 1');
         $query->execute(array('id' => $id));
         $row = $query->fetch();
@@ -57,8 +54,25 @@ class Tilitapahtuma extends BaseModel {
         return null;
     }
 
-    public function save() {
+    public static function findEventsById($id) {
+        $query = DB::connection()->prepare('SELECT * FROM Tilitapahtuma WHERE opiskelija_id = :id');
+        $query->execute(array('id' => $id));
+        $rows = $query->fetchAll();
+        $tapahtumat = array();
 
+        foreach ($rows as $row) {
+            $tapahtumat[] = new Tilitapahtuma(array(
+                'id' => $row['id'],
+                'opiskelija_id' => $row['opiskelija_id'],
+                'pvm' => $row['pvm'],
+                'maara' => $row['maara'],
+                'kuvaus' => $row['kuvaus']
+            ));
+        }
+        return $tapahtumat;
+    }
+
+    public function save() {
         $query = DB::connection()->prepare('INSERT INTO Tilitapahtuma'
                 . '(opiskelija_id, pvm, maara, kuvaus)'
                 . 'VALUES (:opiskelija_id, :pvm, :maara, :kuvaus)'
@@ -67,16 +81,12 @@ class Tilitapahtuma extends BaseModel {
         $query->execute(array('opiskelija_id' => $this->opiskelija_id,
             'pvm' => $this->pvm, 'maara' => $this->maara,
             'kuvaus' => $this->kuvaus));
-//        
+        
         $row = $query->fetch();
         $this->id = $row['id'];
     }
 
     public function update() {
-//        $query = DB::connection()->prepare('UPDATE Tilitapahtuma SET pvm = ' . $this->pvm 
-//                . ', maara = ' . $this->maara 
-//                . ', kuvaus = ' . $this->kuvaus
-//                . ' WHERE ID = ' . $this->id);
         $query = DB::connection()->prepare('UPDATE Tilitapahtuma SET pvm = :pvm,'
                 . ' maara = :maara, kuvaus = :kuvaus WHERE ID = :id');
 

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if user_logged_in %}
+<h2>Yhteenveto käyttäjästä {{user_logged_in.nimi}}</h2>
+{% endif %}
+
+<h5>Viimeisimmät 5 tapahtumaa</h5>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Päivämäärä</th>
+            <th>Määrä</th>
+            <th>Kuvaus</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tapahtuma in tapahtumat|slice(0, 5) %}
+        <tr>
+             <td>{{tapahtuma.pvm}}</td>
+             <td>{{tapahtuma.maara}}</td>
+             <td>{{tapahtuma.kuvaus}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Kulutus kuukausittain</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Tekstiä</td>
+            <td>Tekstiä</td>
+        </tr>
+        <tr>
+            <td>Tekstiä</td>
+            <td>Tekstiä</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

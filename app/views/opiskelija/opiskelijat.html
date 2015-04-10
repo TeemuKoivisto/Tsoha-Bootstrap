@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<table class="table table-bordered table-striped">
+    <thead>
+    <h1>Opiskelijat</h1>
+</thead>
+<tbody>
+    {% for opiskelija in opiskelijat %}
+    <tr>
+        <td><a href="{{base_path}}/opiskelijat/{{opiskelija.id}}">{{opiskelija.id}}</td>
+        <td>{{opiskelija.nimi}}</td>
+        <td>Kenties joku yhteenveto jostain?</td>
+        <td><form method="post" action="{{base_path}}/opiskelijat/{{opiskelija.id}}/delete" style="display: inline-block;">
+                <button type="submit" class="btn btn-danger">Poista opiskelija(broken)</button>
+            </form></td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+{% endblock %}
