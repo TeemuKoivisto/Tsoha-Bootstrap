@@ -24,6 +24,12 @@ class BaseModel {
             return 'Nimi ei saa olla yli 50 merkkiä pitkä.';
         }
     }
+    
+    public function validate_password() {
+        if ($this->password == '' || $this->password == null) {
+            return 'Salasana ei saa olla tyhjä. Helppo voi olla kuitenkin.';
+        }
+    }
 
     public function validate_opiskelija_id() {
         // lol turha
@@ -53,7 +59,6 @@ class BaseModel {
     }
 
     public function errors() {
-        // Lisätään $errors muuttujaan kaikki virheilmoitukset taulukkona
         $errors = array();
 
         foreach ($this->validators as $validator) {
@@ -62,8 +67,6 @@ class BaseModel {
                 $errors[] = $validointi;
             }
         }
-
         return $errors;
     }
-
 }

@@ -12,7 +12,7 @@ class Opiskelija extends BaseModel {
 
     public function __construct($attributes = null) {
         parent::__construct($attributes);
-        $this->validators = array('validate_nimi');
+        $this->validators = array('validate_nimi', 'validate_password');
     }
 
     public static function all() {

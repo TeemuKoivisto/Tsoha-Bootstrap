@@ -44,12 +44,12 @@ $routes->get('/tapahtumat', function() {
     TapahtumaController::index();
 });
 
-$routes->post('/tapahtumat', function() {
-    TapahtumaController::store();
-});
-
 $routes->get('/tapahtumat/new', function() {
     TapahtumaController::create();
+});
+
+$routes->post('/tapahtumat', function() {
+    TapahtumaController::store();
 });
 
 $routes->get('/tapahtumat/:id/edit', function($id) {

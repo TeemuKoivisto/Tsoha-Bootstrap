@@ -11,7 +11,6 @@ class OpiskelijaController extends BaseController {
     public static function index() {
         $opiskelija = self::get_user_logged_in();
         if ($opiskelija) {
-//            self::show($opiskelija->id);
             $tapahtumat = Tilitapahtuma::findEventsById($opiskelija->id);
             View::make('/opiskelija/opiskelija.html', array('tapahtumat' => $tapahtumat, 'opiskelija' => $opiskelija));
         } else {
