@@ -25,7 +25,7 @@ class TapahtumaController extends BaseController {
 
     public static function store() {
         $params = $_POST;
-        
+
         $attributes = array(
             'opiskelija_id' => self::get_user_logged_in()->id,
             'pvm' => $params['pvm'],
@@ -54,15 +54,20 @@ class TapahtumaController extends BaseController {
     }
 
     public static function edit($id) {
-        $tapahtuma = Tilitapahtuma::find($id);
-        View::make('tapahtumat/edit.html', array('attributes' => $tapahtuma));
+        $opiskelija = self::get_user_logged_in();
+        if ($opiskelija) {
+            $tapahtuma = Tilitapahtuma::find($id);
+            View::make('tapahtumat/edit.html', array('attributes' => $tapahtuma));
+        } else {
+            Redirect::to('/', array('message' => 'Kirjaudu sisään tai rekisteröidy.'));
+        }
     }
 
     public static function update($id) {
         $params = $_POST;
         $attributes = array(
             'id' => $id,
-            'opiskelija_id' => $params['opiskelija_id'],
+            'opiskelija_id' => self::get_user_logged_in()->id,
             'pvm' => $params['pvm'],
             'maara' => $params['maara'],
             'kuvaus' => $params['kuvaus']
@@ -84,5 +89,4 @@ class TapahtumaController extends BaseController {
         $tapahtuma->destroy();
         Redirect::to('/tapahtumat', array('message' => 'Tapahtuma poistettu onnistuneesti.'));
     }
-
 }

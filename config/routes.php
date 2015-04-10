@@ -78,6 +78,10 @@ $routes->get('/opiskelijat/:id', function($id) {
     OpiskelijaController::show($id);
 });
 
+$routes->post('/opiskelijat/:id/destroy', function($id) {
+    OpiskelijaController::destroy($id);
+});
+
 //kenties turha. miks yksittäistä tapahtumaa tarttis tarkastella?
 //$routes->get('/alltapahtumat/:id', function($id) {
 //    TapahtumaController::show($id);

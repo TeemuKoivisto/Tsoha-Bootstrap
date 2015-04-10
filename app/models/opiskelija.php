@@ -59,6 +59,11 @@ class Opiskelija extends BaseModel {
         $this->id = $row['id'];
     }
 
+    public function destroy() {
+        $query = DB::connection()->prepare('DELETE FROM Opiskelija WHERE id = :id');
+        $query->execute(array('id' => $this->id));
+    }
+    
     public static function authenticate($nimi, $password) {
         $query = DB::connection()->prepare('SELECT * FROM Opiskelija WHERE nimi = :nimi AND password = :password LIMIT 1');
         $query->execute(array('nimi' => $nimi, 'password' => $password));

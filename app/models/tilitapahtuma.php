@@ -96,8 +96,6 @@ class Tilitapahtuma extends BaseModel {
 
     public function destroy() {
         $query = DB::connection()->prepare('DELETE FROM Tilitapahtuma WHERE id = :id');
-
         $query->execute(array('id' => $this->id));
     }
-
 }

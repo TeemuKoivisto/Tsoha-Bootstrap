@@ -69,6 +69,12 @@ class OpiskelijaController extends BaseController {
         }
     }
 
+    public static function destroy($id) {
+        $opiskelija = new Opiskelija(array('id' => $id));
+        $opiskelija->destroy();
+        Redirect::to('/opiskelijat', array('message' => 'Opiskelija poistettu onnistuneesti.'));
+    }
+    
     public static function login() {
         View::make('opiskelija/login.html');
     }
