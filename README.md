@@ -20,6 +20,7 @@ Neljännen viikon, käyttäjä: Repe salasana: 123:
 * [Muokkaus ja poisto](https://teekoivi.users.cs.helsinki.fi/tsoha/tapahtumat)
 * [Kirjautuminen](https://teekoivi.users.cs.helsinki.fi/tsoha/login)
 * [Validointi lisäyksessä](https://teekoivi.users.cs.helsinki.fi/tsoha/tapahtumat/new)
+* [Linkki käyttöohjeeseen](https://github.com/TeemuKoivisto/Tsoha-Bootstrap/blob/master/K%C3%84YTT%C3%96OHJE.md)
 
 ## Aihekuvaus
 
