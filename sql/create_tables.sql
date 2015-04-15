@@ -18,3 +18,15 @@ CREATE TABLE Tilitapahtuma(
   maara DECIMAL,
   kuvaus VARCHAR(200)
 );
+
+CREATE TABLE Kategoria(
+  id SERIAL PRIMARY KEY,
+  nimi varchar(50) NOT NULL,
+  tilitapahtuma INTEGER REFERENCES Tilitapahtuma(id) ON DELETE RESTRICT
+);
+
+CREATE TABLE Tapahtumakategoria(
+  id SERIAL PRIMARY KEY,
+  kategoria INTEGER REFERENCES Kategoria(id) ON DELETE CASCADE,
+  tilitapahtuma INTEGER REFERENCES Tilitapahtuma(id) ON DELETE CASCADE
+);

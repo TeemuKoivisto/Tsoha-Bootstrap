@@ -9,16 +9,15 @@
 class TapahtumaController extends BaseController {
 
     public static function index() {
+        self::check_logged_in();
+
         $opiskelija = self::get_user_logged_in();
-        if ($opiskelija) {
-            $tapahtumat = Tilitapahtuma::findEventsById($opiskelija->id);
-            View::make('tapahtumat/index.html', array('tapahtumat' => $tapahtumat));
-        } else {
-            Redirect::to('/', array('message' => 'Kirjaudu sisään tai rekisteröidy.'));
-        }
+        $tapahtumat = Tilitapahtuma::findEventsById($opiskelija->id);
+        View::make('tapahtumat/index.html', array('tapahtumat' => $tapahtumat));
     }
 
     public static function show_all() {
+        self::check_logged_in();
         $tapahtumat = Tilitapahtuma::all();
         View::make('tapahtumat/all.html', array('tapahtumat' => $tapahtumat));
     }
@@ -45,22 +44,15 @@ class TapahtumaController extends BaseController {
     }
 
     public static function create() {
-        $opiskelija = self::get_user_logged_in();
-        if ($opiskelija) {
-            View::make('tapahtumat/new.html');
-        } else {
-            Redirect::to('/', array('message' => 'Kirjaudu sisään tai rekisteröidy.'));
-        }
+        self::check_logged_in();
+        View::make('tapahtumat/new.html');
     }
 
     public static function edit($id) {
-        $opiskelija = self::get_user_logged_in();
-        if ($opiskelija) {
-            $tapahtuma = Tilitapahtuma::find($id);
-            View::make('tapahtumat/edit.html', array('attributes' => $tapahtuma));
-        } else {
-            Redirect::to('/', array('message' => 'Kirjaudu sisään tai rekisteröidy.'));
-        }
+        self::check_logged_in();
+        $tapahtuma = Tilitapahtuma::find($id);
+        $kategoriat = Kategoria::all();
+        View::make('tapahtumat/edit.html', array('attributes' => $tapahtuma, 'kategoriat' => $kategoriat));
     }
 
     public static function update($id) {
@@ -73,13 +65,18 @@ class TapahtumaController extends BaseController {
             'kuvaus' => $params['kuvaus']
         );
 
+        $kategoriat = Kategoria::all();
         $tapahtuma = new Tilitapahtuma($attributes);
         $errors = $tapahtuma->errors();
 
         if (count($errors) != 0) {
             View::make('/tapahtumat/edit.html', array('errors' => $errors, 'attributes' => $attributes));
         } else {
+//            Tapahtumakategoria::destroyByEventId($id);
             $tapahtuma->update();
+//            if (array_key_exists('kategoriat', $params)) {
+//                Tapahtumakategoria::createConnetion($id, $params['kategoriat']);
+//            }
             Redirect::to('/tapahtumat', array('message' => 'Tapahtumaa muokattu onnistuneesti.'));
         }
     }
@@ -89,4 +86,5 @@ class TapahtumaController extends BaseController {
         $tapahtuma->destroy();
         Redirect::to('/tapahtumat', array('message' => 'Tapahtuma poistettu onnistuneesti.'));
     }
+
 }

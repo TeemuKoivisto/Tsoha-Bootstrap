@@ -9,22 +9,20 @@
 class OpiskelijaController extends BaseController {
 
     public static function index() {
+        self::check_logged_in();
         $opiskelija = self::get_user_logged_in();
-        if ($opiskelija) {
-            $tapahtumat = Tilitapahtuma::findEventsById($opiskelija->id);
-            View::make('/opiskelija/opiskelija.html', array('tapahtumat' => $tapahtumat, 'opiskelija' => $opiskelija));
-        } else {
-            Redirect::to('/', array('message' => 'Kirjaudu sisään tai luo uusi käyttäjä!'));
-        }
+        $tapahtumat = Tilitapahtuma::findEventsById($opiskelija->id);
+        View::make('/opiskelija/opiskelija.html', array('tapahtumat' => $tapahtumat, 'opiskelija' => $opiskelija));
     }
 
     public static function show_all() {
+        self::check_logged_in();
         $opiskelijat = Opiskelija::all();
-        Kint::dump($opiskelijat);
         View::make('opiskelija/opiskelijat.html', array('opiskelijat' => $opiskelijat));
     }
 
     public static function show($id) {
+        self::check_logged_in();
         $opiskelija = Opiskelija::find($id);
         $tapahtumat = Tilitapahtuma::findEventsById($id);
 
@@ -35,24 +33,12 @@ class OpiskelijaController extends BaseController {
     }
 
     public static function create() {
+        self::check_logged_in();
         View::make('opiskelija/new.html');
     }
 
     public static function store() {
         $params = $_POST;
-//        $errors = array();
-//        $opiskelija;
-//        
-//        if ($params['password'] === $params['password2']) {
-//            $attributes = array(
-//                'nimi' => $params['nimi'],
-//                'password' => $params['password']
-//            );
-//            $opiskelija = new Opiskelija($attributes);
-//            $errors = $opiskelija->errors();
-//        } else {
-//            $errors[] = 'Salasana ei täsmää.';
-//        }
 
         $attributes = array(
             'nimi' => $params['nimi'],
@@ -74,7 +60,7 @@ class OpiskelijaController extends BaseController {
         $opiskelija->destroy();
         Redirect::to('/opiskelijat', array('message' => 'Opiskelija poistettu onnistuneesti.'));
     }
-    
+
     public static function login() {
         View::make('opiskelija/login.html');
     }

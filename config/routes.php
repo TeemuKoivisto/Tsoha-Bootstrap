@@ -64,6 +64,30 @@ $routes->post('/tapahtumat/:id/destroy', function($id) {
     TapahtumaController::destroy($id);
 });
 
+$routes->get('/kategoria', function() {
+    KategoriaController::index();
+});
+
+$routes->get('/kategoria/new', function() {
+    KategoriaController::create();
+});
+
+$routes->post('/kategoria', function() {
+    KategoriaController::store();
+});
+
+$routes->get('/kategoria/:id/edit', function($id) {
+    KategoriaController::edit($id);
+});
+
+$routes->post('/kategoria/:id/edit', function($id) {
+    KategoriaController::update($id);
+});
+
+$routes->post('/kategoria/:id/destroy', function($id) {
+    KategoriaController::destroy($id);
+});
+
 // vain adminin
 
 $routes->get('/alltapahtumat', function() {

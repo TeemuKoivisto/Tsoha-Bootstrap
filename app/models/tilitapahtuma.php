@@ -72,6 +72,26 @@ class Tilitapahtuma extends BaseModel {
         return $tapahtumat;
     }
 
+    public static function findEventsByCategory($id) {
+        $query = DB::connection()->prepare('SELECT * FROM Tilitapahtuma WHERE tilitapahtuma.id IN '
+                . '(SELECT tapahtumakategoria.tilitapahtuma FROM tapahtumakategoria '
+                . 'WHERE tapahtumakategoria.kategoria = :id');
+        $query->execute(array('id' => $id));
+        $rows = $query->fetchAll();
+        $tapahtumat = array();
+
+        foreach ($rows as $row) {
+            $tapahtumat[] = new Tilitapahtuma(array(
+                'id' => $row['id'],
+                'opiskelija_id' => $row['opiskelija_id'],
+                'pvm' => $row['pvm'],
+                'maara' => $row['maara'],
+                'kuvaus' => $row['kuvaus']
+            ));
+        }
+        return $tapahtumat;
+    }
+    
     public function save() {
         $query = DB::connection()->prepare('INSERT INTO Tilitapahtuma'
                 . '(opiskelija_id, pvm, maara, kuvaus)'

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Muokkaa tapahtumaa</h1>
+<h1>Muokkaa kategoriaa</h1>
 
 {% if errors %}
 <div class="alert alert-danger">
@@ -13,14 +13,14 @@
 </div>
 {% endif %}
 
-<form method="post" action="{{base_path}}/tapahtumat/{{attributes.id}}/edit">
+<form method="post" action="{{base_path}}/kategoria/{{attributes.id}}/edit">
     <div class="form-group">
-        <label>Päivämäärä</label>
-        <input type="text" name="pvm" class="form-control" value="{{attributes.pvm}}">
+        <label>Nimi</label>
+        <input type="text" name="pvm" class="form-control" value="{{attributes.nimi}}">
     </div>
 
     <div class="form-group">
-        <label>Määrä</label>
+        <label>Tuotteet?</label>
         <input type="text" name="maara" class="form-control" value="{{attributes.maara}}">
     </div>
 
@@ -28,15 +28,6 @@
         <label>Kuvaus</label>
         <textarea name="kuvaus" class="form-control" >{{attributes.kuvaus}}</textarea>
     </div>
-
-    <div class="form-group">
-      <label>Kategoriat</label>
-      <select class="form-control" name="kategoriat[]" multiple="">
-          {% for kategoria in kategoriat %}
-            <option value="{{kategoria.id}}">{{kategoria.nimi}}</option>
-          {% endfor %}
-      </select>
-    </div> 
 
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Päivitä</button>
