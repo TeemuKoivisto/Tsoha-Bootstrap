@@ -6,6 +6,47 @@ class Tapahtumakategoria extends BaseModel{
         parent::__construct($attributes);
     }
     
+    public function findByEvent($id) {
+        $query = DB::connection()->prepare('SELECT kategoria.id, nimi FROM Kategoria '
+                . 'JOIN Tapahtumakategoria ON kategoria.id = '
+                . 'tapahtumakategoria.kategoria WHERE tilitapahtuma = :id');
+        $query->execute(array('id' => $id));
+
+        $rows = $query->fetchAll();
+        $kategoriat = array();
+
+        foreach ($rows as $row) {
+            $kategoriat[] = new Kategoria(array(
+                'id' => $row['id'],
+                'nimi' => $row['nimi']
+            ));
+        }
+
+        return $kategoriat;
+    }
+    
+    public function findByCategory($ıd) {
+        $query = DB::connection()->prepare('SELECT tilitapahtuma.id, opiskelija_id, '
+                . 'pvm, maara, kuvaus FROM Tilitapahtuma JOIN Tapahtumakategoria ON '
+                . 'tilitapahtuma.id = tapahtumakategoria.tilitapahtuma WHERE kategoria = :id');
+        $query->execute(array('id' => $id));
+
+        $rows = $query->fetchAll();
+        $tapahtumat = array();
+
+        foreach ($rows as $row) {
+            $tapahtumat[] = new Tilitapahtuma(array(
+                'id' => $row['id'],
+                'opiskelija_id' => $row['opiskelija_id'],
+                'pvm' => $row['pvm'],
+                'maara' => $row['maara'],
+                'kuvaus' => $row['kuvaus']
+            ));
+        }
+
+        return $tapahtumat;
+    }
+    
     public function save() {
         $query = DB::connection()->prepare('INSERT INTO Tapahtumakategoria '
                 . '(kategoria, tilitapahtuma) VALUES (:kategoria, :tilitapahtuma) '

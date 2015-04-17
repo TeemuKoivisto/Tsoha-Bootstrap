@@ -26,6 +26,10 @@ $routes->post('/login', function() {
     OpiskelijaController::handle_login();
 });
 
+$routes->get('/logout', function() {
+    OpiskelijaController::logout();
+});
+
 $routes->get('/opiskelija/new', function() {
     OpiskelijaController::create();
 });
@@ -74,6 +78,10 @@ $routes->get('/kategoria/new', function() {
 
 $routes->post('/kategoria', function() {
     KategoriaController::store();
+});
+
+$routes->get('/kategoria/:id', function($id) {
+    KategoriaController::show($id);
 });
 
 $routes->get('/kategoria/:id/edit', function($id) {

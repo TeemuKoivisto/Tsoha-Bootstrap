@@ -1,6 +1,6 @@
 -- Lisää DROP TABLE lauseet tähän tiedostoon
 
-DROP TABLE IF EXISTS Tapahtumaategoria CASCADE;
+DROP TABLE IF EXISTS Tapahtumakategoria CASCADE;
 
 DROP TABLE IF EXISTS Kategoria CASCADE;
 

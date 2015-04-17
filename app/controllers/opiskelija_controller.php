@@ -12,22 +12,19 @@ class OpiskelijaController extends BaseController {
         self::check_logged_in();
         $opiskelija = self::get_user_logged_in();
         $tapahtumat = Tilitapahtuma::findEventsById($opiskelija->id);
-        View::make('/opiskelija/opiskelija.html', array('tapahtumat' => $tapahtumat, 'opiskelija' => $opiskelija));
+        View::make('/opiskelija/index.html', array('tapahtumat' => $tapahtumat, 'opiskelija' => $opiskelija));
     }
 
     public static function show_all() {
         self::check_logged_in();
         $opiskelijat = Opiskelija::all();
-        View::make('opiskelija/opiskelijat.html', array('opiskelijat' => $opiskelijat));
+        View::make('opiskelija/all.html', array('opiskelijat' => $opiskelijat));
     }
 
     public static function show($id) {
         self::check_logged_in();
         $opiskelija = Opiskelija::find($id);
         $tapahtumat = Tilitapahtuma::findEventsById($id);
-
-        Kint::dump($opiskelija);
-        Kint::dump($tapahtumat);
 
         View::make('opiskelija/opiskelijadata.html', array('tapahtumat' => $tapahtumat, 'opiskelija' => $opiskelija));
     }
@@ -69,7 +66,6 @@ class OpiskelijaController extends BaseController {
         $params = $_POST;
 
         $opiskelija = Opiskelija::authenticate($params['username'], $params['password']);
-        Kint::dump($opiskelija);
         if (!$opiskelija) {
             View::make('opiskelija/login.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'username' => $params['username']));
         } else {
@@ -79,4 +75,8 @@ class OpiskelijaController extends BaseController {
         }
     }
 
+    public static function logout() {
+        $_SESSION['user'] = null;
+        Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
+    }
 }

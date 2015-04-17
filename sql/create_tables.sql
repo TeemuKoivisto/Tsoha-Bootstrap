@@ -21,8 +21,7 @@ CREATE TABLE Tilitapahtuma(
 
 CREATE TABLE Kategoria(
   id SERIAL PRIMARY KEY,
-  nimi varchar(50) NOT NULL,
-  tilitapahtuma INTEGER REFERENCES Tilitapahtuma(id) ON DELETE RESTRICT
+  nimi varchar(50) NOT NULL
 );
 
 CREATE TABLE Tapahtumakategoria(

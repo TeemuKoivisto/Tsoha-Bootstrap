@@ -50,6 +50,9 @@ class BaseModel {
         if ($this->maara == '' || $this->maara == null) {
             return 'Määrä ei saa olla tyhjä.';
         }
+        if (!is_numeric($this->maara)) {
+            return 'Määrä pitää olla numeroita. Daa.';
+        }
     }
 
     public function validate_kuvaus() {

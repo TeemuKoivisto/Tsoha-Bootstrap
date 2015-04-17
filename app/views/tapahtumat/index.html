@@ -8,17 +8,32 @@
 </div>
 {% endif %}
 
+<h1>Opiskelijan kaikki tapahtumat</h1>
+
 <button class="btn btn-primary">Valitse aikajakso(broken)</button>
 <a class="btn btn-primary" href="{{base_path}}/tapahtumat/new">Luo uusi tapahtuma</a>
 
 <table class="table table-bordered table-striped">
-    <tbody>
-        {% for tapahtuma in tapahtumat %}
+    <thead>
         <tr>
-            <td>{{tapahtuma.pvm}}</td>
-            <td>{{tapahtuma.maara}}</td>
-            <td>{{tapahtuma.kuvaus}}</td>
-            <td><a class="btn btn-default btn-sm" href="{{base_path}}/tapahtumat/{{tapahtuma.id}}/edit">Muokkaa</td>
+            <th>Päivämäärä</th>
+            <th>Määrä</th>
+            <th>Kuvaus</th>
+            <th>Kategoriat</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for indeksi in tjak %}
+        <tr>
+            <td>{{indeksi.tapahtuma.pvm}}</td>
+            <td>{{indeksi.tapahtuma.maara}}</td>
+            <td>{{indeksi.tapahtuma.kuvaus}}</td>
+            <td>
+                {% for kategoria in indeksi.kategoriat %}
+                 <a class="btn btn-default btn-sm" href="{{base_path}}/kategoria/{{kategoria.id}}">{{kategoria.nimi}}
+                {% endfor %}
+            </td>
+            <td><a class="btn btn-default btn-sm" href="{{base_path}}/tapahtumat/{{indeksi.tapahtuma.id}}/edit">Muokkaa</td>
             <td>{{forms.destroy_button("#{base_path}/tapahtumat/#{tapahtuma.id}/destroy")}}</td>
         </tr>
         {% endfor %}

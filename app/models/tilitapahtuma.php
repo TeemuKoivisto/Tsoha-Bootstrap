@@ -54,6 +54,23 @@ class Tilitapahtuma extends BaseModel {
         return null;
     }
 
+    public static function findEventsAndCategoryById($id) {
+        $tapahtumat = Tilitapahtuma::findEventsById($id);
+        $tjak = array();
+        
+        foreach ($tapahtumat as $tapahtuma) {
+            $kategoriat = Tapahtumakategoria::findByEvent($tapahtuma->id);
+            $tjak[] = array('tapahtuma' => $tapahtuma, 'kategoriat' => $kategoriat);
+        }
+        return $tjak;
+        
+        // lol =>
+//        $query = DB::connection()->prepare('SELECT nimi AS kategoria_nimi, pvm, maara, '
+//                . 'kuvaus FROM Tapahtumakategoria JOIN Kategoria ON kategoria.id = '
+//                . 'tapahtumakategoria.kategoria JOIN Tilitapahtuma ON tilitapahtuma.id '
+//                . '= tapahtumakategoria.tilitapahtuma WHERE opiskelija_id = :id');
+    }
+    
     public static function findEventsById($id) {
         $query = DB::connection()->prepare('SELECT * FROM Tilitapahtuma WHERE opiskelija_id = :id');
         $query->execute(array('id' => $id));
@@ -72,11 +89,11 @@ class Tilitapahtuma extends BaseModel {
         return $tapahtumat;
     }
 
-    public static function findEventsByCategory($id) {
-        $query = DB::connection()->prepare('SELECT * FROM Tilitapahtuma WHERE tilitapahtuma.id IN '
-                . '(SELECT tapahtumakategoria.tilitapahtuma FROM tapahtumakategoria '
-                . 'WHERE tapahtumakategoria.kategoria = :id');
-        $query->execute(array('id' => $id));
+    public static function findEventsByCategoryAndId($id, $opiskelija) {
+        $query = DB::connection()->prepare('SELECT * FROM Tilitapahtuma WHERE opiskelija_id = :opiskelija '
+                . 'AND tilitapahtuma.id IN (SELECT tapahtumakategoria.tilitapahtuma FROM tapahtumakategoria '
+                . 'WHERE tapahtumakategoria.kategoria = :id)');
+        $query->execute(array('id' => $id, 'opiskelija' => $opiskelija));
         $rows = $query->fetchAll();
         $tapahtumat = array();
 

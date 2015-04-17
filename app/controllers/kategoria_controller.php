@@ -12,13 +12,14 @@ class KategoriaController extends BaseController {
 
     public static function show($id) {
         self::check_logged_in();
-        $tapahtumat = Tilitapahtuma::findEventsByCategory($id);
+        $tapahtumat = Tilitapahtuma::findEventsByCategoryAndId($id, self::get_user_logged_in()->id);
+        View::make('kategoria/all.html', array('tapahtumat' => $tapahtumat));
     }
     
     public static function show_all() {
         self::check_logged_in();
         $tapahtumat = Kategoria::all();
-        View::make('tapahtumat/all.html', array('tapahtumat' => $tapahtumat));
+        View::make('kategoria/all.html', array('tapahtumat' => $tapahtumat));
     }
 
     public static function store() {

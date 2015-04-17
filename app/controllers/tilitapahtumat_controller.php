@@ -12,8 +12,8 @@ class TapahtumaController extends BaseController {
         self::check_logged_in();
 
         $opiskelija = self::get_user_logged_in();
-        $tapahtumat = Tilitapahtuma::findEventsById($opiskelija->id);
-        View::make('tapahtumat/index.html', array('tapahtumat' => $tapahtumat));
+        $tjak = Tilitapahtuma::findEventsAndCategoryById($opiskelija->id);
+        View::make('tapahtumat/index.html', array('tjak' => $tjak));
     }
 
     public static function show_all() {
@@ -36,16 +36,19 @@ class TapahtumaController extends BaseController {
         $errors = $tapahtuma->errors();
 
         if (count($errors) != 0) {
-            View::make('/tapahtumat/new.html', array('errors' => $errors, 'attributes' => $attributes));
+            $kategoriat = Kategoria::all();
+            View::make('/tapahtumat/new.html', array('errors' => $errors, 'attributes' => $attributes, 'kategoriat' => $kategoriat));
         } else {
             $tapahtuma->save();
+            Tapahtumakategoria::createConnections($tapahtuma->id, $params['kategoriat']);
             Redirect::to('/tapahtumat', array('message' => 'Tapahtuma lisätty'));
         }
     }
 
     public static function create() {
         self::check_logged_in();
-        View::make('tapahtumat/new.html');
+        $kategoriat = Kategoria::all();
+        View::make('tapahtumat/new.html', array('kategoriat' => $kategoriat));
     }
 
     public static function edit($id) {
@@ -70,7 +73,8 @@ class TapahtumaController extends BaseController {
         $errors = $tapahtuma->errors();
 
         if (count($errors) != 0) {
-            View::make('/tapahtumat/edit.html', array('errors' => $errors, 'attributes' => $attributes));
+            $kategoriat = Kategoria::all();
+            View::make('/tapahtumat/edit.html', array('errors' => $errors, 'attributes' => $attributes, 'kategoriat' => $kategoriat));
         } else {
 //            Tapahtumakategoria::destroyByEventId($id);
             $tapahtuma->update();

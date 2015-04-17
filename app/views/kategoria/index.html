@@ -14,7 +14,7 @@
     <tbody>
         {% for kategoria in kategoriat %}
         <tr>
-            <td>{{kategoria.nimi}}</td>
+            <td><a href="{{base_path}}/kategoria/{{kategoria.id}}">{{kategoria.nimi}}</td>
             <td><a class="btn btn-default btn-sm" href="{{base_path}}/kategoria/{{kategoria.id}}/edit">Muokkaa</td>
             <td>{{forms.destroy_button("#{base_path}/kategoria/#{kategoria.id}/destroy")}}</td>
         </tr>

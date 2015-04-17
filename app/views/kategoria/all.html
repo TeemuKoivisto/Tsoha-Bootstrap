@@ -2,7 +2,7 @@
 {% block content %}
 {% import "macros/forms.html" as forms %}
 
-<p>Kaikki tilitapahtumat. Tarkoitettu Adminille.</p>
+<h1>{{kategoria}}</h1>
 
 {% if message %}
 <div class="alert alert-success">
@@ -16,7 +16,6 @@
     <tbody>
         {% for tapahtuma in tapahtumat %}
         <tr>
-            <td><a href="{{base_path}}/opiskelijat/{{tapahtuma.opiskelija_id}}">{{tapahtuma.opiskelija_id}}</td>
             <td>{{tapahtuma.pvm}}</td>
             <td>{{tapahtuma.maara}}</td>
             <td>{{tapahtuma.kuvaus}}</td>
