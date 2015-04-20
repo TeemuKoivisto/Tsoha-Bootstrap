@@ -88,6 +88,7 @@ class TapahtumaController extends BaseController {
     public static function destroy($id) {
         $tapahtuma = new Tilitapahtuma(array('id' => $id));
         $tapahtuma->destroy();
+        Tapahtumakategoria::destroyEventById($id);
         Redirect::to('/tapahtumat', array('message' => 'Tapahtuma poistettu onnistuneesti.'));
     }
 

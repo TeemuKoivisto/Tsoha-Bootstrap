@@ -72,6 +72,7 @@ class KategoriaController extends BaseController {
     public static function destroy($id) {
         $kategoria = new Kategoria(array('id' => $id));
         $kategoria->destroy();
+        Tapahtumakategoria::destroyCategoryById($id);
         Redirect::to('/kategoria', array('message' => 'Kategoria poistettu onnistuneesti.'));
     }
 
