@@ -34,7 +34,7 @@
                 {% endfor %}
             </td>
             <td><a class="btn btn-default btn-sm" href="{{base_path}}/tapahtumat/{{indeksi.tapahtuma.id}}/edit">Muokkaa</td>
-            <td>{{forms.destroy_button("#{base_path}/tapahtumat/#{tapahtuma.id}/destroy")}}</td>
+            <td>{{forms.destroy_button("#{base_path}/tapahtumat/#{indeksi.tapahtuma.id}/destroy")}}</td>
         </tr>
         {% endfor %}
     </tbody>

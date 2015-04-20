@@ -11,6 +11,7 @@
 		"slim/slim": "2.*",
 		"twig/twig": "~1.5",
 		"raveren/kint": "v0.9",
-		"vlucas/valitron": "~1.2"
+		"vlucas/valitron": "~1.2",
+                "phpdocumentator/phpdocumentator": "2.*"
 	}
 }
