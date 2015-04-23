@@ -42,11 +42,13 @@ class KategoriaController extends BaseController {
 
     public static function create() {
         self::check_logged_in();
+        self::check_if_admin();
         View::make('kategoria/new.html');
     }
 
     public static function edit($id) {
         self::check_logged_in();
+        self::check_if_admin();
         $kategoria = Kategoria::find($id);
         View::make('kategoria/edit.html', array('attributes' => $kategoria));
     }
@@ -70,6 +72,7 @@ class KategoriaController extends BaseController {
     }
 
     public static function destroy($id) {
+        self::check_if_admin();
         $kategoria = new Kategoria(array('id' => $id));
         $kategoria->destroy();
         Tapahtumakategoria::destroyCategoryById($id);

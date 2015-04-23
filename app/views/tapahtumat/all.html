@@ -2,7 +2,7 @@
 {% block content %}
 {% import "macros/forms.html" as forms %}
 
-<p>Kaikki tilitapahtumat. Tarkoitettu Adminille.</p>
+<p>Kaikkien tilitapahtumat.</p>
 
 {% if message %}
 <div class="alert alert-success">
@@ -10,9 +10,15 @@
 </div>
 {% endif %}
 
-<button class="btn btn-primary">Valitse aikajakso(broken)</button>
-
 <table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Opiskelija id</th>
+            <th>Päivämäärä</th>
+            <th>Määrä</th>
+            <th>Kuvaus</th>
+        </tr>
+    </thead>
     <tbody>
         {% for tapahtuma in tapahtumat %}
         <tr>

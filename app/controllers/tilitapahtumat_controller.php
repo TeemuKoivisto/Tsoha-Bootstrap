@@ -18,6 +18,7 @@ class TapahtumaController extends BaseController {
 
     public static function show_all() {
         self::check_logged_in();
+        self::check_if_admin();
         $tapahtumat = Tilitapahtuma::all();
         View::make('tapahtumat/all.html', array('tapahtumat' => $tapahtumat));
     }
@@ -76,11 +77,9 @@ class TapahtumaController extends BaseController {
             $kategoriat = Kategoria::all();
             View::make('/tapahtumat/edit.html', array('errors' => $errors, 'attributes' => $attributes, 'kategoriat' => $kategoriat));
         } else {
-//            Tapahtumakategoria::destroyByEventId($id);
+            Tapahtumakategoria::destroyEventById($id);
             $tapahtuma->update();
-//            if (array_key_exists('kategoriat', $params)) {
-//                Tapahtumakategoria::createConnetion($id, $params['kategoriat']);
-//            }
+            Tapahtumakategoria::createConnections($id, $params['kategoriat']);
             Redirect::to('/tapahtumat', array('message' => 'Tapahtumaa muokattu onnistuneesti.'));
         }
     }

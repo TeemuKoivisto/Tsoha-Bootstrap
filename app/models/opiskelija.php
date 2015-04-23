@@ -8,7 +8,7 @@
 
 class Opiskelija extends BaseModel {
 
-    public $id, $nimi, $password;
+    public $id, $nimi, $password, $yllapitaja;
 
     public function __construct($attributes = null) {
         parent::__construct($attributes);
@@ -25,7 +25,8 @@ class Opiskelija extends BaseModel {
         foreach ($rows as $row) {
             $opiskelijat[] = new Opiskelija(array(
                 'id' => $row['id'],
-                'nimi' => $row['nimi']
+                'nimi' => $row['nimi'],
+                'yllapitaja' => $row['yllapitaja']
             ));
         }
 
@@ -40,7 +41,9 @@ class Opiskelija extends BaseModel {
         if ($row) {
             $opiskelija = new Opiskelija(array(
                 'id' => $row['id'],
-                'nimi' => $row['nimi']
+                'nimi' => $row['nimi'],
+                'yllapitaja' => $row['yllapitaja']
+                    
             ));
             return $opiskelija;
         }
@@ -73,7 +76,8 @@ class Opiskelija extends BaseModel {
         if ($row) {
             $opiskelija = new Opiskelija(array(
                 'id' => $row['id'],
-                'nimi' => $row['nimi']
+                'nimi' => $row['nimi'],
+                'yllapitaja' => $row['yllapitaja']
             ));
             return $opiskelija;
         } else {

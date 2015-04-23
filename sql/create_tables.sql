@@ -3,12 +3,8 @@
 CREATE TABLE Opiskelija(
   id SERIAL PRIMARY KEY,
   nimi varchar(50) NOT NULL,
-  password varchar(50) NOT NULL
-);
-
-CREATE TABLE Admin(
-  id SERIAL PRIMARY KEY,
-  opiskelija_id INTEGER REFERENCES Opiskelija(id)
+  password varchar(50) NOT NULL,
+  yllapitaja boolean NOT NULL
 );
 
 CREATE TABLE Tilitapahtuma(

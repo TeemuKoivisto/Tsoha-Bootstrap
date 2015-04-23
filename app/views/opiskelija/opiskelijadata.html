@@ -3,7 +3,11 @@
 <table class="table table-bordered table-striped">
     <thead>
       <tr>
+          {% if opiskelija.yllapitaja %}
+          <th>Ylläpitäjä {{opiskelija.nimi}}</th>
+          {% else %}
         <th>{{opiskelija.nimi}}</th>
+          {% endif %}
       </tr>
     </thead>
     <tbody>

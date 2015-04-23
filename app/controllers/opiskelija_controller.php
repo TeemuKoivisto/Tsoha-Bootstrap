@@ -17,12 +17,14 @@ class OpiskelijaController extends BaseController {
 
     public static function show_all() {
         self::check_logged_in();
+        self::check_if_admin();
         $opiskelijat = Opiskelija::all();
         View::make('opiskelija/all.html', array('opiskelijat' => $opiskelijat));
     }
 
     public static function show($id) {
         self::check_logged_in();
+        self::check_if_admin();
         $opiskelija = Opiskelija::find($id);
         $tapahtumat = Tilitapahtuma::findEventsById($id);
 
@@ -54,7 +56,13 @@ class OpiskelijaController extends BaseController {
 
     public static function destroy($id) {
         $opiskelija = new Opiskelija(array('id' => $id));
+        $tapahtumat = Tilitapahtuma::findEventsById($id);
+        foreach ($tapahtumat as $tapahtuma) {
+            Tapahtumakategoria::destroyEventById($id);
+            $tapahtuma->destroy();
+        }
         $opiskelija->destroy();
+        
         Redirect::to('/opiskelijat', array('message' => 'Opiskelija poistettu onnistuneesti.'));
     }
 
@@ -79,4 +87,5 @@ class OpiskelijaController extends BaseController {
         $_SESSION['user'] = null;
         Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
     }
+
 }

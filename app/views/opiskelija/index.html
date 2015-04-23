@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
+{% if message %}
+<div class="alert alert-danger">
+    {{message}}
+</div>
+{% endif %}
+
 {% if user_logged_in %}
 <h2>Yhteenveto käyttäjästä {{user_logged_in.nimi}}</h2>
 {% endif %}
@@ -25,7 +31,7 @@
         {% endfor %}
     </tbody>
 </table>
-
+<!--
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
@@ -42,5 +48,5 @@
             <td>Tekstiä</td>
         </tr>
     </tbody>
-</table>
+</table>-->
 {% endblock %}

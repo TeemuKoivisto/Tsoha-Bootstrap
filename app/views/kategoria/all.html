@@ -10,9 +10,14 @@
 </div>
 {% endif %}
 
-<button class="btn btn-primary">Valitse aikajakso(broken)</button>
-
 <table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Päivämäärä</th>
+            <th>Määrä</th>
+            <th>Kuvaus</th>
+        </tr>
+    </thead>
     <tbody>
         {% for tapahtuma in tapahtumat %}
         <tr>

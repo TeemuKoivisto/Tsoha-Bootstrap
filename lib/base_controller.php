@@ -17,4 +17,14 @@ class BaseController {
         }
     }
 
+    public static function check_if_admin() {
+        $opiskelija_id = $_SESSION['user'];
+        $opiskelija = Opiskelija::find($opiskelija_id);
+        if ($opiskelija->yllapitaja) {
+            return;
+        } else {
+            Redirect::to('/opiskelija', array('message' => 'Et ole ylläpitäjä!'));
+        }
+    }
+
 }
