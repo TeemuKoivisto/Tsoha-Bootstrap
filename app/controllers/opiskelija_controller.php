@@ -8,6 +8,10 @@
 
 class OpiskelijaController extends BaseController {
 
+    public static function frontpage() {
+        View::make('index.html');
+    }
+    
     public static function index() {
         self::check_logged_in();
         $opiskelija = self::get_user_logged_in();

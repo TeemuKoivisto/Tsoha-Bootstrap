@@ -1,22 +1,8 @@
 <?php
 
 $routes->get('/', function() {
-    HelloWorldController::index();
+    OpiskelijaController::frontpage();
 });
-
-$routes->get('/hiekkalaatikko', function() {
-    HelloWorldController::sandbox();
-});
-
-$routes->get('/admin', function() {
-    HelloWorldController::admin();
-});
-
-$routes->get('/tilinakyma', function() {
-    HelloWorldController::tilinakyma();
-});
-
-// kirjautumattoman viewit
 
 $routes->get('/login', function() {
     OpiskelijaController::login();
