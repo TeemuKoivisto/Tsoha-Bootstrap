@@ -4,7 +4,7 @@ CREATE TABLE Opiskelija(
   id SERIAL PRIMARY KEY,
   nimi varchar(50) NOT NULL,
   password varchar(50) NOT NULL,
-  yllapitaja boolean NOT NULL
+  yllapitaja boolean
 );
 
 CREATE TABLE Tilitapahtuma(

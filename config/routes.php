@@ -20,7 +20,7 @@ $routes->get('/opiskelija/new', function() {
     OpiskelijaController::create();
 });
 
-$routes->post('/opiskelija', function() {
+$routes->post('/', function() {
     OpiskelijaController::store();
 });
 

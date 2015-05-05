@@ -36,7 +36,6 @@ class OpiskelijaController extends BaseController {
     }
 
     public static function create() {
-        self::check_logged_in();
         View::make('opiskelija/new.html');
     }
 
@@ -49,12 +48,12 @@ class OpiskelijaController extends BaseController {
         );
         $opiskelija = new Opiskelija($attributes);
         $errors = $opiskelija->errors();
-
+        
         if (count($errors) != 0) {
             View::make('/opiskelija/new.html', array('errors' => $errors, 'attributes' => $attributes));
         } else {
             $opiskelija->save();
-            Redirect::to('/opiskelija', array('message' => 'Uusi käyttäjä luotu'));
+            Redirect::to('/', array('message' => 'Uusi käyttäjä luotu'));
         }
     }
 
